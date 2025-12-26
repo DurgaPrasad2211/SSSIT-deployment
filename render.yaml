@@ -1,18 +1,9 @@
 services:
   - type: web
-    name: sssit-app
+    name: sssit
     env: python
     plan: free
     buildCommand: |
       pip install -r requirements.txt
       python manage.py collectstatic --noinput
     startCommand: gunicorn SSSIT.wsgi:application
-    envVars:
-      - key: DJANGO_SETTINGS_MODULE
-        value: SSSIT.settings
-      - key: PYTHON_VERSION
-        value: 3.12.1
-      - key: SECRET_KEY
-        generateValue: true
-      - key: DEBUG
-        value: "False"
