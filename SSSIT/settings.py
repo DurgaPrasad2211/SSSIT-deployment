@@ -132,9 +132,12 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-STATICFILES_DIRS = [
-    BASE_DIR / "dist" / "assets",
-]
+STATICFILES_DIRS = []
+
+dist_assets = BASE_DIR / "dist" / "assets"
+if dist_assets.exists():
+    STATICFILES_DIRS.append(dist_assets)
+
 
 STATICFILES_STORAGE = ('whitenoise.storage.CompressedManifestStaticFilesStorage')
 
