@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import logo from "../assets/adminlogo.webp";
+import { useNavigate } from "react-router-dom";
 
-const AdminLogin = () => {
+const AdminLogin = ({ onLogin }) => {
+
   const navigate = useNavigate();
 
   const [username, setUsername] = useState("");
@@ -46,21 +47,17 @@ const AdminLogin = () => {
   const handleLogin = (e) => {
     e.preventDefault();
     setError("");
-    setLoading(true);
 
-    setTimeout(() => {
-      if (username === savedUsername && password === savedPassword) {
-        // ✅ STORE BOOLEAN STRING (IMPORTANT)
-        sessionStorage.setItem("admin", "true");
-
-        navigate("/", { replace: true });
-      } else {
-        setError("❌ Invalid username or password");
-      }
-
-      setLoading(false);
-    }, 600);
+    if (username === savedUsername && password === savedPassword) {
+      sessionStorage.setItem("admin", "true");
+      onLogin();
+      navigate("/", { replace: true });
+    } else {
+      setError("Invalid username or password");
+    }
   };
+
+
 
   const handleSendOtp = () => {
     if (!email.trim()) {

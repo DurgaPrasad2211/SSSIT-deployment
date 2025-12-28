@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import logo from "../assets/adminlogo.webp";
 import certificate from "../assets/Certified001.webp";
 
@@ -13,53 +13,49 @@ const customDropdownMenuStyle = {
 const customDropdownItemStyle = {
   fontSize: "0.9rem",
   padding: "5px 25px",
-  height:"28px",
+  height: "28px",
 };
 
-const NavbarTop = () => {
+const NavbarTop = ({ onLogout }) => {
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
-  const navigate = useNavigate();
 
   const navItemStyle = {
 
     fontSize: "clamp(0.9rem, 0.9vw, 0.90rem)",
     whiteSpace: "nowrap",
-    padding:"4px 12px"
+    padding: "4px 12px"
   };
 
   const handleConfirmLogout = () => {
     sessionStorage.removeItem("admin");
-    window.dispatchEvent(new Event("storage"));
-
-    setShowLogoutConfirm(false);
-    navigate("/login", { replace: true });
+    onLogout();
   };
 
   return (
     <>
       <header className="bg-white border-bottom top-0 z-3">
         <div className="container-fluid d-flex justify-content-center align-items-center gap-3 py-2">
-        < img
-  src={logo}
-  alt="SSSIT Logo"
-  width="300"
-  height="80"
-  loading="lazy"
-  decoding="async"
-  className="rounded"
-  style={{ objectFit: "contain", borderRadius: "20px" }}
-/>
+          < img
+            src={logo}
+            alt="SSSIT Logo"
+            width="300"
+            height="80"
+            loading="lazy"
+            decoding="async"
+            className="rounded"
+            style={{ objectFit: "contain", borderRadius: "20px" }}
+          />
 
-<img
-  src={certificate}
-  alt="ISO Certification"
-  width="300"
-  height="80"
-  loading="lazy"
-  decoding="async"
-  className="rounded"
-  style={{ objectFit: "contain", borderRadius: "20px" }}
-/>
+          <img
+            src={certificate}
+            alt="ISO Certification"
+            width="300"
+            height="80"
+            loading="lazy"
+            decoding="async"
+            className="rounded"
+            style={{ objectFit: "contain", borderRadius: "20px" }}
+          />
         </div>
       </header>
 
