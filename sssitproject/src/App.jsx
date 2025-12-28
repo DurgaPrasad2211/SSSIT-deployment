@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -25,11 +25,9 @@ import CertificateDetails from "./components/CertificateDetails";
 import AddExamStudent from "./components/AddExamStudent";
 
 const App = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  useEffect(() => {
-    setIsLoggedIn(sessionStorage.getItem("admin") === "true");
-  }, []);
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    sessionStorage.getItem("admin") === "true"
+  );
 
 
   const handleLogin = () => {
